@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  matching-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - aerospike
+    environment:
+      - AEROSPIKE_HOST=aerospike
+    networks:
+      - app-network
+
+  aerospike:
+    image: aerospike/aerospike-server:latest
+    container_name: aerospike
+    mem_limit: 12G
+    mem_reservation: 10G
+    cpus: 2
+    ports:
+      - "3000:3000"
+    volumes:
+      - aerospike-data:/opt/aerospike/data
+      - ./src/main/resources/config:/etc/aerospike
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "3000"]
+      interval: 30s
+      retries: 3
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  aerospike-data:
+    driver: local
