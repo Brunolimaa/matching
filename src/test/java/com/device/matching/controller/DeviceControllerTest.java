@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.device.matching.config.TestConfig;
 import com.device.matching.dto.response.DeviceResponseDTO;
-import com.device.matching.service.DeviceService;
+import com.device.matching.service.DeviceServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class DeviceControllerTest {
 
     @MockBean
-    private DeviceService deviceService;
+    private DeviceServiceImpl deviceServiceImpl;
 
     @Autowired
     private MockMvc mockMvc;
@@ -46,7 +46,7 @@ public class DeviceControllerTest {
         mockResponse.setCreated(true);
         mockResponse.setHitCount(1);
 
-        when(deviceService.createOrUpdateDevice(anyString())).thenReturn(mockResponse);
+        when(deviceServiceImpl.createOrUpdateDevice(anyString())).thenReturn(mockResponse);
 
         mockMvc.perform(post("/api/v1/devices/match")
                         .contentType("application/json")
@@ -64,7 +64,7 @@ public class DeviceControllerTest {
         mockResponse.setOsName("Android");
         mockResponse.setHitCount(1);
 
-        when(deviceService.createOrUpdateDevice(anyString())).thenReturn(mockResponse);
+        when(deviceServiceImpl.createOrUpdateDevice(anyString())).thenReturn(mockResponse);
 
         mockMvc.perform(post("/api/v1/devices/match")
                         .contentType("application/json")
@@ -81,7 +81,7 @@ public class DeviceControllerTest {
         mockResponse.setOsName("Android");
         mockResponse.setHitCount(1);
 
-        when(deviceService.getDeviceById(anyString())).thenReturn(mockResponse);
+        when(deviceServiceImpl.getDeviceById(anyString())).thenReturn(mockResponse);
 
         mockMvc.perform(get("/api/v1/devices/{deviceId}", "123"))
                 .andExpect(status().isOk())
@@ -103,7 +103,7 @@ public class DeviceControllerTest {
         mockResponse.setOsName("Android");
         mockResponse.setHitCount(1);
 
-        when(deviceService.getDevicesByOs(anyString())).thenReturn(Arrays.asList(mockResponse));
+        when(deviceServiceImpl.getDevicesByOs(anyString())).thenReturn(Arrays.asList(mockResponse));
 
         mockMvc.perform(get("/api/v1/devices/os/{osName}", "Android"))
                 .andExpect(status().isOk())

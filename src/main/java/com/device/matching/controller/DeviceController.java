@@ -2,6 +2,7 @@ package com.device.matching.controller;
 
 import com.device.matching.dto.response.DeviceResponseDTO;
 import com.device.matching.service.DeviceService;
+import com.device.matching.service.DeviceServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class DeviceController implements DeviceApi {
 
     private final DeviceService deviceService;
 
-    public DeviceController(DeviceService deviceService) {
-        this.deviceService = deviceService;
+    public DeviceController(DeviceServiceImpl deviceServiceImpl) {
+        this.deviceService = deviceServiceImpl;
     }
 
     @Override

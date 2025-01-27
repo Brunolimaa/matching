@@ -13,13 +13,13 @@ import org.mockito.*;
 import java.util.Optional;
 import java.util.List;
 
-class DeviceServiceTest {
+class DeviceServiceImplTest {
 
     @Mock
     private DeviceRepository deviceRepository;
 
     @InjectMocks
-    private DeviceService deviceService;
+    private DeviceServiceImpl deviceServiceImpl;
 
     private Device device;
     private DeviceResponseDTO deviceResponseDTO;
@@ -51,7 +51,7 @@ class DeviceServiceTest {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.of(device));
         when(deviceRepository.updateHit(any(Device.class))).thenReturn(device);
 
-        DeviceResponseDTO result = deviceService.createOrUpdateDevice(userAgent);
+        DeviceResponseDTO result = deviceServiceImpl.createOrUpdateDevice(userAgent);
 
         assertNotNull(result);
         assertEquals(device.getDeviceId(), result.getDeviceId());
@@ -63,7 +63,7 @@ class DeviceServiceTest {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.empty());
         when(deviceRepository.save(any(Device.class))).thenReturn(device);
 
-        DeviceResponseDTO result = deviceService.createOrUpdateDevice(userAgent);
+        DeviceResponseDTO result = deviceServiceImpl.createOrUpdateDevice(userAgent);
 
         assertNotNull(result);
         assertEquals(device.getDeviceId(), result.getDeviceId());
@@ -76,7 +76,7 @@ class DeviceServiceTest {
         List<Device> devices = List.of(device);
         when(deviceRepository.findByOsName("Chrome")).thenReturn(devices);
 
-        List<DeviceResponseDTO> result = deviceService.getDevicesByOs("Chrome");
+        List<DeviceResponseDTO> result = deviceServiceImpl.getDevicesByOs("Chrome");
 
         assertNotNull(result);
         assertFalse(result.isEmpty());
@@ -89,7 +89,7 @@ class DeviceServiceTest {
         when(deviceRepository.findByOsName("iOS")).thenReturn(List.of());
 
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
-            deviceService.getDevicesByOs("iOS");
+            deviceServiceImpl.getDevicesByOs("iOS");
         });
 
         assertEquals("No devices found for OS: iOS", exception.getMessage());
@@ -99,7 +99,7 @@ class DeviceServiceTest {
     void testGetDeviceById_whenDeviceExists() {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.of(device));
 
-        DeviceResponseDTO result = deviceService.getDeviceById(device.getDeviceId());
+        DeviceResponseDTO result = deviceServiceImpl.getDeviceById(device.getDeviceId());
 
         assertNotNull(result);
         assertEquals(device.getDeviceId(), result.getDeviceId());
@@ -110,7 +110,7 @@ class DeviceServiceTest {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.empty());
 
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
-            deviceService.getDeviceById(device.getDeviceId());
+            deviceServiceImpl.getDeviceById(device.getDeviceId());
         });
 
         assertEquals("Device not found with ID: "+device.getDeviceId(), exception.getMessage());
@@ -120,7 +120,7 @@ class DeviceServiceTest {
     void testDeleteDevice_whenDeviceExists() {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.of(device));
 
-        deviceService.deleteDevice(device.getDeviceId());
+        deviceServiceImpl.deleteDevice(device.getDeviceId());
 
         verify(deviceRepository, times(1)).deleteById(device.getDeviceId());
     }
@@ -130,7 +130,7 @@ class DeviceServiceTest {
         when(deviceRepository.findById(device.getDeviceId())).thenReturn(Optional.empty());
 
         ResourceNotFoundException exception = assertThrows(ResourceNotFoundException.class, () -> {
-            deviceService.deleteDevice(device.getDeviceId());
+            deviceServiceImpl.deleteDevice(device.getDeviceId());
         });
 
         assertEquals("Device not found with ID: "+device.getDeviceId(), exception.getMessage());
