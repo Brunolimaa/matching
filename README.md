@@ -53,6 +53,15 @@ docker-compose build
 docker-compose up -d
 ```
 
+### Access the Swagger documentation 
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+![image](https://github.com/user-attachments/assets/ed074c00-6398-4ce3-884d-b7add4e82145)
+
+
 ### 7. Test the Endpoint
 The backend exposes an endpoint to match devices based on the provided User-Agent string.
 
@@ -65,10 +74,13 @@ curl --location 'http://localhost:8080/api/    v1/devices/match' \--header 'Cont
 ### Example Response:
 ```
 {
-  "os": "Windows 10",
-  "osVersion": "10.0",
-  "browser": "Chrome",
-  "browserVersion": "58.0.3029.110"
+    "deviceId": "linux-91.0.4472.124",
+    "hitCount": 1,
+    "osName": "Linux",
+    "osVersion": "linux",
+    "browserName": "Chrome 9",
+    "browserVersion": "91.0.4472.124",
+    "created": true
 }
 ```
 
