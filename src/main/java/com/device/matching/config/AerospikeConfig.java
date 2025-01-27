@@ -10,25 +10,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AerospikeConfig {
 
-    @Value("${aerospike.host:${AEROSPIKE_HOST:aerospike}}")  // Lê primeiro do application.properties ou, se não houver, da variável de ambiente AEROSPIKE_HOST
+    @Value("${aerospike.host:${AEROSPIKE_HOST:aerospike}}")
     private String host;
 
-    @Value("${aerospike.port:${AEROSPIKE_PORT:3000}}")  // Lê primeiro do application.properties ou da variável de ambiente AEROSPIKE_PORT
+    @Value("${aerospike.port:${AEROSPIKE_PORT:3000}}")
     private int port;
 
-    @Value("${aerospike.timeout:${AEROSPIKE_TIMEOUT:1000}}")  // Lê primeiro do application.properties ou da variável de ambiente AEROSPIKE_TIMEOUT
+    @Value("${aerospike.timeout:${AEROSPIKE_TIMEOUT:1000}}")
     private int timeout;
 
     @Bean
     public AerospikeClient aerospikeClient() {
-        // Criação do ClientPolicy
         ClientPolicy clientPolicy = new ClientPolicy();
-        clientPolicy.timeout = timeout;  // Usando a configuração de timeout do application.properties
+        clientPolicy.timeout = timeout;
 
-        // Criação do host com base nas configurações do application.properties
-        Host aerospikeHost = new Host(host, port);  // Usando as propriedades 'host' e 'port'
+        Host aerospikeHost = new Host(host, port);
 
-        // Retorna o cliente Aerospike
         return new AerospikeClient(clientPolicy, aerospikeHost);
     }
 }
