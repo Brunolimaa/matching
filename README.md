@@ -25,7 +25,7 @@ Clone this repository to your local machine:
 
 ```
 git clone https://github.com/Brunolimaa/matching.git
-cd matching```
+cd matching
 ```
 
 ### First, clean the project and compile the source code:
