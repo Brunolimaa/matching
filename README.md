@@ -25,7 +25,7 @@ Clone this repository to your local machine:
 
 ```
 git clone https://github.com/Brunolimaa/matching.git
-cd device-matching-backend```
+cd matching```
 ```
 
 ### First, clean the project and compile the source code:
