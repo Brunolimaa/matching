@@ -26,6 +26,8 @@ Clone this repository to your local machine:
 ```
 git clone https://github.com/Brunolimaa/matching.git
 cd matching
+
+git checkout master
 ```
 
 ### First, clean the project and compile the source code:
@@ -56,11 +58,9 @@ The backend exposes an endpoint to match devices based on the provided User-Agen
 
 You can test the endpoint using curl, Postman, or any other HTTP client.
 ```
-curl -X POST http://localhost:8080/device/match \
-  -H "Content-Type: application/json" \
-  -d '{
-    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
-  }'
+
+curl --location 'http://localhost:8080/api/    v1/devices/match' \--header 'Content-Type: application/json' \--data 'Mozilla/5.0 (Linux NT 10.0; Win64;     x64) AppleWebKit/537.36 (KHTML, like     Gecko) Chrome/91.0.4472.124 Safari/537.    36'
+
 ```
 ### Example Response:
 ```
