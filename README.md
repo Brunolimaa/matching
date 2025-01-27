@@ -24,7 +24,7 @@ Before you can run the project, you need to have the following installed:
 Clone this repository to your local machine:
 
 ```
-git clone https://github.com/your-username/device-matching-backend.git
+git clone https://github.com/Brunolimaa/matching.git
 cd device-matching-backend```
 ```
 
