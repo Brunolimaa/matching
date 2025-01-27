@@ -87,43 +87,45 @@ curl --location 'http://localhost:8080/api/    v1/devices/match' \--header 'Cont
 # Architecture
 
 ```
-└── src
-    ├── main
-    │   ├── java
-    │   │   └── com
-    │   │       └── device
-    │   │           └── matching
-    │   │               ├── config
-    │   │               │   ├── AerospikeConfig.java
-    │   │               │   └── SwaggerConfig.java
-    │   │               ├── controller
-    │   │               │   ├── DeviceApi.java
-    │   │               │   └── DeviceController.java
-    │   │               ├── dto
-    │   │               │   ├── request
-    │   │               │   └── response
-    │   │               │       └── DeviceResponseDTO.java
-    │   │               ├── exception
-    │   │               │   ├── ErrorResponse.java
-    │   │               │   ├── GlobalExceptionHandler.java
-    │   │               │   └── ResourceNotFoundException.java
-    │   │               ├── mapper
-    │   │               │   └── DeviceMapper.java
-    │   │               ├── MatchingApplication.java
-    │   │               ├── model
-    │   │               │   └── Device.java
-    │   │               ├── repository
-    │   │               │   ├── DeviceAerosPikeRepository.java
-    │   │               │   └── DeviceRepository.java
-    │   │               ├── service
-    │   │               │   └── DeviceService.java
-    │   │               └── util
-    │   │                   ├── ErrorMessages.java
-    │   │                   └── UserAgentParser.java
-    │   └── resources
-    │       ├── application.properties
-    │       └── config
-    │           └── aerospike.conf
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── device
+│   │   │           └── matching
+│   │   │               ├── config
+│   │   │               │   ├── AerospikeConfig.java
+│   │   │               │   └── SwaggerConfig.java
+│   │   │               ├── controller
+│   │   │               │   ├── DeviceApi.java
+│   │   │               │   └── DeviceController.java
+│   │   │               ├── dto
+│   │   │               │   ├── request
+│   │   │               │   └── response
+│   │   │               │       └── DeviceResponseDTO.java
+│   │   │               ├── exception
+│   │   │               │   ├── ErrorResponse.java
+│   │   │               │   ├── GlobalExceptionHandler.java
+│   │   │               │   └── ResourceNotFoundException.java
+│   │   │               ├── mapper
+│   │   │               │   └── DeviceMapper.java
+│   │   │               ├── MatchingApplication.java
+│   │   │               ├── model
+│   │   │               │   └── Device.java
+│   │   │               ├── repository
+│   │   │               │   ├── DeviceAerosPikeRepository.java
+│   │   │               │   └── DeviceRepository.java
+│   │   │               ├── service
+│   │   │               │   ├── DeviceServiceImpl.java
+│   │   │               │   └── DeviceService.java
+│   │   │               └── util
+│   │   │                   ├── ErrorMessages.java
+│   │   │                   └── UserAgentParser.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── config
+│   │           └── aerospike.conf
+
 ```
 
 ### 1. AerospikeConfig.java
